@@ -36,15 +36,20 @@
 
                 <div>
                     <label class="text-sm font-medium text-gray-700">I am a:</label>
-                    <div class="mt-2 grid grid-cols-2 gap-2">
+                    <div class="mt-2 grid grid-cols-3 gap-2">
                         <input type="radio" name="user-type" id="user-buyer" value="buyer" class="hidden" checked>
-                        <label for="user-buyer" class="text-center w-full px-4 py-2 border rounded-lg cursor-pointer transition-colors font-semibold">
+                        <label for="user-buyer" class="text-center w-full px-4 py-2 border rounded-lg cursor-pointer transition-colors font-semibold text-sm">
                             🛒 Buyer
                         </label>
                         
                         <input type="radio" name="user-type" id="user-seller" value="seller" class="hidden">
-                        <label for="user-seller" class="text-center w-full px-4 py-2 border rounded-lg cursor-pointer transition-colors font-semibold">
+                        <label for="user-seller" class="text-center w-full px-4 py-2 border rounded-lg cursor-pointer transition-colors font-semibold text-sm">
                             🏪 Seller
+                        </label>
+
+                        <input type="radio" name="user-type" id="user-delivery" value="delivery" class="hidden">
+                        <label for="user-delivery" class="text-center w-full px-4 py-2 border rounded-lg cursor-pointer transition-colors font-semibold text-sm">
+                            🛵 Delivery
                         </label>
                     </div>
                 </div>
@@ -80,23 +85,22 @@
         // Add an event listener for when the form is submitted
         loginForm.addEventListener('submit', function(event) {
             
-            // Prevent the form from actually submitting (which would reload the page)
             event.preventDefault();
             
-            // Get the value of the checked radio button ('buyer' or 'seller')
             const userType = document.querySelector('input[name="user-type"]:checked').value;
             
-            // FOR YOUR HACKATHON:
-            // We don't check the password. We just redirect based on the user type.
-            
             if (userType === 'buyer') {
-                // If "Buyer" is selected, go to buyer.html
                 console.log('Redirecting to Buyer page...');
                 window.location.href = 'buyer.html'; 
+            
             } else if (userType === 'seller') {
-                // If "Seller" is selected, go to seller.html
                 console.log('Redirecting to Seller page...');
                 window.location.href = 'seller.html';
+            
+            // *** NEW JAVASCRIPT LOGIC ***
+            } else if (userType === 'delivery') {
+                console.log('Redirecting to Delivery page...');
+                window.location.href = 'delivery.html';
             }
         });
     </script>
