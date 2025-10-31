@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - LocalConnect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* This style block makes the toggle button work */
+        /* When the radio is checked, its label gets the orange style */
+        input[type="radio"]:checked + label {
+            background-color: #F97316; /* This is tailwind's orange-500 */
+            color: white;
+            border-color: #F97316;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <div class="min-h-screen flex items-center justify-center p-4">
+
+        <div class="max-w-md w-full bg-white p-8 rounded-xl shadow-lg space-y-6">
+
+            <div class="text-center">
+                <h1 class="text-3xl font-bold text-orange-500">LocalConnect</h1>
+                <p class="text-gray-600">Please log in to continue</p>
+            </div>
+
+            <form id="login-form" class="space-y-6">
+
+                <div>
+                    <label class="text-sm font-medium text-gray-700">I am a:</label>
+                    <div class="mt-2 grid grid-cols-2 gap-2">
+                        <input type="radio" name="user-type" id="user-buyer" value="buyer" class="hidden" checked>
+                        <label for="user-buyer" class="text-center w-full px-4 py-2 border rounded-lg cursor-pointer transition-colors font-semibold">
+                            🛒 Buyer
+                        </label>
+                        
+                        <input type="radio" name="user-type" id="user-seller" value="seller" class="hidden">
+                        <label for="user-seller" class="text-center w-full px-4 py-2 border rounded-lg cursor-pointer transition-colors font-semibold">
+                            🏪 Seller
+                        </label>
+                    </div>
+                </div>
+                
+                <div>
+                    <label for="email" class="text-sm font-medium text-gray-700">Email Address</label>
+                    <input id="email" name="email" type="email" autocomplete="email" required 
+                           placeholder="email@example.com"
+                           class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500">
+                </div>
+                
+                <div>
+                    <label for="password" class="text-sm font-medium text-gray-700">Password</label>
+                    <input id="password" name="password" type="password" autocomplete="current-password" required 
+                           placeholder="••••••••"
+                           class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500">
+                </div>
+                
+                <div>
+                    <button type="submit" 
+                            class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-lg font-bold text-white bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">
+                        Log In
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Get the form element
+        const loginForm = document.getElementById('login-form');
+
+        // Add an event listener for when the form is submitted
+        loginForm.addEventListener('submit', function(event) {
+            
+            // Prevent the form from actually submitting (which would reload the page)
+            event.preventDefault();
+            
+            // Get the value of the checked radio button ('buyer' or 'seller')
+            const userType = document.querySelector('input[name="user-type"]:checked').value;
+            
+            // FOR YOUR HACKATHON:
+            // We don't check the password. We just redirect based on the user type.
+            
+            if (userType === 'buyer') {
+                // If "Buyer" is selected, go to buyer.html
+                console.log('Redirecting to Buyer page...');
+                window.location.href = 'buyer.html'; 
+            } else if (userType === 'seller') {
+                // If "Seller" is selected, go to seller.html
+                console.log('Redirecting to Seller page...');
+                window.location.href = 'seller.html';
+            }
+        });
+    </script>
+</body>
+</html>
